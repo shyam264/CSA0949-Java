@@ -1,0 +1,27 @@
+import java.util.Scanner;
+
+public class Username {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a username: ");
+        String username = scanner.nextLine();
+        System.out.print("Enter a password: ");
+        String password = scanner.nextLine();
+
+        if (isValidUsername(username) && isValidPassword(password)) {
+            System.out.println("Valid username and password!");
+        } else {
+            System.out.println("Invalid username or password!");
+        }
+
+        scanner.close();
+    }
+
+    public static boolean isValidUsername(String username) {
+        return username.length() >= 5 && username.matches("[a-zA-Z0-9]+");
+    }
+
+    public static boolean isValidPassword(String password) {
+        return password.length() >= 8;
+    }
+}
