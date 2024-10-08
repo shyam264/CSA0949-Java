@@ -3,26 +3,24 @@ import java.util.Scanner;
 public class ATMBalanceCalculator {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int[] denominations = {2000, 500, 200, 100};
-        int[] noteCount = new int[denominations.length];
+        int[] denominations = {2000, 500, 200, 100}, noteCount = new int[4], priority = new int[4];
 
-        System.out.println("Enter the priority for denominations (1 for highest to 4 for lowest):");
-        System.out.println("1. 2000\n2. 500\n3. 200\n4. 100");
-        int[] priority = new int[denominations.length];
-
-        for (int i = 0; i < denominations.length; i++) {
-            System.out.print("Enter priority for denomination " + denominations[i] + ": ");
+        System.out.println("Enter priority for denominations (1-4):");
+        for (int i = 0; i < 4; i++) {
+            System.out.print(denominations[i] + ": ");
             priority[i] = scanner.nextInt();
         }
-        for (int i = 0; i < denominations.length; i++) {
-            System.out.print("Enter the number of notes for denomination " + denominations[i] + ": ");
+        
+        for (int i = 0; i < 4; i++) {
+            System.out.print("Number of notes for " + denominations[i] + ": ");
             noteCount[i] = scanner.nextInt();
         }
+
         int totalBalance = 0;
-        for (int i = 0; i < denominations.length; i++) {
-            int index = priority[i] - 1;  // Adjusting for 0-based indexing
-            totalBalance += denominations[index] * noteCount[index];
+        for (int i = 0; i < 4; i++) {
+            totalBalance += denominations[priority[i] - 1] * noteCount[priority[i] - 1];
         }
+
         System.out.println("Total available balance in ATM: " + totalBalance);
         scanner.close();
     }
