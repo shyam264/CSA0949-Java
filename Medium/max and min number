@@ -1,0 +1,28 @@
+import java.util.Arrays;
+import java.util.Scanner;
+public class MthMaxNthMin {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the size of the array: ");
+        int size = scanner.nextInt();
+        int[] arr = new int[size];
+        System.out.println("Enter the elements of the array:");
+        for (int i = 0; i < size; i++) {
+            arr[i] = scanner.nextInt();
+        }
+        System.out.print("Enter the value of M (for Mth maximum): ");
+        int M = scanner.nextInt();
+        System.out.print("Enter the value of N (for Nth minimum): ");
+        int N = scanner.nextInt();
+        Arrays.sort(arr);
+        int MthMax = arr[size - M];  // M-th maximum is at (size - M) index after sorting
+        int NthMin = arr[N - 1];     // N-th minimum is at (N - 1) index after sorting
+        int sum = MthMax + NthMin;
+        int difference = MthMax - NthMin;
+        System.out.println("M-th maximum number: " + MthMax);
+        System.out.println("N-th minimum number: " + NthMin);
+        System.out.println("Sum of M-th maximum and N-th minimum: " + sum);
+        System.out.println("Difference between M-th maximum and N-th minimum: " + difference);
+        scanner.close();
+    }
+}
