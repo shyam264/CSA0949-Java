@@ -7,21 +7,8 @@ public class Username {
         String username = scanner.nextLine();
         System.out.print("Enter a password: ");
         String password = scanner.nextLine();
-
-        if (isValidUsername(username) && isValidPassword(password)) {
-            System.out.println("Valid username and password!");
-        } else {
-            System.out.println("Invalid username or password!");
-        }
-
+        boolean isValid = username.length() >= 5 && username.matches("[a-zA-Z0-9]+") && password.length() >= 8;
+        System.out.println(isValid ? "Valid username and password!" : "Invalid username or password!");
         scanner.close();
-    }
-
-    public static boolean isValidUsername(String username) {
-        return username.length() >= 5 && username.matches("[a-zA-Z0-9]+");
-    }
-
-    public static boolean isValidPassword(String password) {
-        return password.length() >= 8;
     }
 }
