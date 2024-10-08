@@ -4,19 +4,14 @@ public class VowelsAndConsonants {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter a word: ");
-        String word = scanner.nextLine();
-        String vowels = "";
-        String consonants = "";
-        word = word.toLowerCase();
+        String word = scanner.nextLine().toLowerCase();
+        StringBuilder vowels = new StringBuilder(), consonants = new StringBuilder();
 
-        for (int i = 0; i < word.length(); i++) {
-            char ch = word.charAt(i);
-            if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u') {
-                vowels += ch;
-            } else if (Character.isLetter(ch)) {
-                consonants += ch;
-            }
+        for (char ch : word.toCharArray()) {
+            if ("aeiou".indexOf(ch) >= 0) vowels.append(ch);
+            else if (Character.isLetter(ch)) consonants.append(ch);
         }
+
         System.out.println("Vowels: " + vowels);
         System.out.println("Consonants: " + consonants);
         scanner.close();
