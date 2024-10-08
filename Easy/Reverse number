@@ -1,26 +1,20 @@
 import java.util.Scanner;
 
-public class StringToInteger {
+public class ReverseWord {
     public static void main(String[] args) {
-        // Create a scanner object to read input from user
         Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("Enter a word: ");
+        String word = scanner.nextLine();
+        
+        String reversedWord = "";
 
-        // Ask the user to enter a string
-        System.out.print("Enter a string containing an integer: ");
-        String input = scanner.nextLine();
-
-        try {
-            // Convert the string to an integer
-            int number = Integer.parseInt(input);
-
-            // Output the converted integer
-            System.out.println("Converted integer: " + number);
-        } catch (NumberFormatException e) {
-            // Handle exception if the string cannot be converted to an integer
-            System.out.println("Invalid input! Please enter a valid integer in string form.");
+        for (int i = word.length() - 1; i >= 0; i--) {
+            reversedWord += word.charAt(i);
         }
 
-        // Close the scanner
+        System.out.println("Reversed word: " + reversedWord);
+
         scanner.close();
     }
 }
