@@ -1,0 +1,24 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
+public class MergeSortedArrays {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int[] arr1 = inputArray(scanner, "1");
+        int[] arr2 = inputArray(scanner, "2");
+        ArrayList<Integer> mergedList = new ArrayList<>();
+        for (int num : arr1) mergedList.add(num);
+        for (int num : arr2) mergedList.add(num);
+        Collections.sort(mergedList);
+        System.out.println("Merged array: " + mergedList);
+        scanner.close();
+    }
+    private static int[] inputArray(Scanner scanner, String arrayNumber) {
+        System.out.print("Enter the number of elements in array " + arrayNumber + ": ");
+        int n = scanner.nextInt();
+        int[] arr = new int[n];
+        System.out.println("Enter elements of array " + arrayNumber + " in sorted order:");
+        for (int i = 0; i < n; i++) arr[i] = scanner.nextInt();
+        return arr;
+    }
+}
