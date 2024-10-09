@@ -1,0 +1,39 @@
+import java.util.Scanner;
+public class PrimeNumbersAfterNth {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the value of n: ");
+        int n = scanner.nextInt();
+        int nthPrime = findNthPrime(n);
+        System.out.println("The " + n + "th prime number is: " + nthPrime);
+        System.out.print("The next " + n + " prime numbers after " + nthPrime + " are: ");
+        printNextNPrimesAfter(nthPrime, n);
+        scanner.close();
+    }
+    private static int findNthPrime(int n) {
+        int count = 0, number = 1;
+        while (count < n) {
+            number++;
+            if (isPrime(number)) count++;
+        }
+        return number;
+    }
+    private static boolean isPrime(int number) {
+        if (number < 2) return false;
+        for (int i = 2; i * i <= number; i++) {
+            if (number % i == 0) return false;
+        }
+        return true;
+    }
+    private static void printNextNPrimesAfter(int startPrime, int n) {
+        int count = 0, number = startPrime + 1;
+        while (count < n) {
+            if (isPrime(number)) {
+                System.out.print(number + " ");
+                count++;
+            }
+            number++;
+        }
+        System.out.println();
+    }
+}
