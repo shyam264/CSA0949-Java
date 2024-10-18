@@ -1,0 +1,82 @@
+import java.util.Scanner;
+
+// Class to represent a bank account
+class BankAccount {
+    // Data Members
+    private String depositorName;
+    private int accountNumber;
+    private String accountType;
+    private double balance;
+
+    // Constructor to initialize the account with a default balance
+    public BankAccount() {
+        this.balance = 10000.0; // Initial balance
+    }
+
+    // Method to read account information
+    public void readAccountDetails() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter Account Number: ");
+        accountNumber = scanner.nextInt();
+        scanner.nextLine(); // Consume newline
+
+        System.out.print("Enter Depositor Name: ");
+        depositorName = scanner.nextLine();
+
+        System.out.print("Enter Account Type (Savings/Current): ");
+        accountType = scanner.nextLine();
+    }
+
+    // Method to display account balance
+    public void displayBalance() {
+        System.out.println("Current Balance: Rs. " + balance);
+    }
+
+    // Method to deposit an amount
+    public void depositAmount(double amount) {
+        if (amount > 0) {
+            balance += amount;
+            System.out.println("Amount Deposited: Rs. " + amount);
+        } else {
+            System.out.println("Invalid deposit amount.");
+        }
+        displayBalance();
+    }
+
+    // Method to withdraw an amount after checking balance
+    public void withdrawAmount(double amount) {
+        if (amount > 0 && (balance - amount) >= 500.0) {
+            balance -= amount;
+            System.out.println("Amount Withdrawn: Rs. " + amount);
+        } else {
+            System.out.println("Insufficient balance or amount exceeds minimum balance requirement (Rs. 500).");
+        }
+        displayBalance();
+    }
+}
+
+// Main class to test the program
+public class BankAccountExample {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        BankAccount account = new BankAccount();
+
+        // Read account details
+        account.readAccountDetails();
+
+        // Display the current balance
+        account.displayBalance();
+
+        // Deposit an amount
+        System.out.print("Enter amount to deposit: Rs. ");
+        double depositAmount = scanner.nextDouble();
+        account.depositAmount(depositAmount);
+
+        // Withdraw an amount
+        System.out.print("Enter amount to withdraw: Rs. ");
+        double withdrawAmount = scanner.nextDouble();
+        account.withdrawAmount(withdrawAmount);
+
+        scanner.close(); // Close the scanner
+    }
+}
