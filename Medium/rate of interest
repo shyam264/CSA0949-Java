@@ -1,0 +1,24 @@
+abstract class Bank {
+    public abstract double getRateOfInterest();
+}
+
+class SBI extends Bank {
+    public double getRateOfInterest() { return 8.4; }
+}
+
+class ICICI extends Bank {
+    public double getRateOfInterest() { return 7.3; }
+}
+
+class AXIS extends Bank {
+    public double getRateOfInterest() { return 9.7; }
+}
+
+public class BankInterestRate {
+    public static void main(String[] args) {
+        Bank[] banks = { new SBI(), new ICICI(), new AXIS() };
+        for (Bank bank : banks) {
+            System.out.println(bank.getClass().getSimpleName() + " Rate of Interest: " + bank.getRateOfInterest() + "%");
+        }
+    }
+}
