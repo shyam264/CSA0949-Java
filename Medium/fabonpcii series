@@ -1,0 +1,39 @@
+// Class to generate Fibonacci series
+class FibonacciSeries implements Runnable {
+    private int count;
+
+    // Constructor to set the number of Fibonacci numbers to generate
+    public FibonacciSeries(int count) {
+        this.count = count;
+    }
+
+    @Override
+    public void run() {
+        generateFibonacci(count); // Call the method to generate Fibonacci series
+    }
+
+    // Method to generate and display the Fibonacci series
+    private void generateFibonacci(int count) {
+        int a = 0, b = 1; // First two Fibonacci numbers
+        System.out.print("Fibonacci Series up to " + count + " terms: ");
+
+        for (int i = 0; i < count; i++) {
+            System.out.print(a + " "); // Print current Fibonacci number
+            int next = a + b; // Calculate the next number
+            a = b; // Move to the next number
+            b = next; // Update b to the next number
+        }
+        System.out.println(); // New line after the series
+    }
+}
+
+// Main class to run the Fibonacci series generator
+public class FibonacciExample {
+    public static void main(String[] args) {
+        int input = 5; // Sample input for the number of terms
+
+        // Create a thread to generate the Fibonacci series
+        Thread fibonacciThread = new Thread(new FibonacciSeries(input));
+        fibonacciThread.start(); // Start the thread
+    }
+}
