@@ -1,0 +1,39 @@
+// Superclass
+class Parent {
+    int value;
+
+    // Parameterized constructor
+    Parent(int value) {
+        this.value = value; // Assigning value to the superclass member
+        System.out.println("Parent value: " + value);
+    }
+
+    void display() {
+        System.out.println("Displaying from Parent: " + value);
+    }
+}
+
+// Subclass
+class Child extends Parent {
+    int value; // Hiding the superclass member
+
+    // Parameterized constructor
+    Child(int value) {
+        super(value); // Calling the superclass constructor
+        this.value = value * 2; // Assigning a different value
+        System.out.println("Child value: " + this.value);
+    }
+
+    void display() {
+        super.display(); // Calling the superclass display method
+        System.out.println("Displaying from Child: " + value);
+    }
+}
+
+// Main class
+public class MemberHidingExample {
+    public static void main(String[] args) {
+        Child child = new Child(10);
+        child.display();
+    }
+}
