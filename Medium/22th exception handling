@@ -1,0 +1,38 @@
+import java.util.Scanner;
+
+public class ExceptionHandlingDemo {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        // Example of handling multiple exceptions
+        try {
+            // Arithmetic Exception example
+            System.out.print("Enter two integers to divide (numerator and denominator): ");
+            int numerator = scanner.nextInt();
+            int denominator = scanner.nextInt();
+            int result = numerator / denominator;  // This may throw ArithmeticException
+            System.out.println("Result of division: " + result);
+
+            // ArrayIndexOutOfBoundsException example
+            System.out.print("Enter the size of the array: ");
+            int size = scanner.nextInt();
+            int[] numbers = new int[size];
+            System.out.print("Enter an index to access: ");
+            int index = scanner.nextInt();
+            System.out.println("Value at index " + index + ": " + numbers[index]); // This may throw ArrayIndexOutOfBoundsException
+
+            // NullPointerException example
+            String str = null;
+            System.out.println("Length of the string: " + str.length()); // This may throw NullPointerException
+
+        } catch (ArithmeticException | ArrayIndexOutOfBoundsException | NullPointerException e) {
+            // Multi-catch block
+            System.out.println("An error occurred: " + e.getMessage());
+        } finally {
+            // Optional finally block to execute cleanup code
+            System.out.println("Execution completed.");
+            scanner.close();
+        }
+    }
+}
