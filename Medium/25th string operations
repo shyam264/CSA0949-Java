@@ -1,0 +1,33 @@
+import java.util.Scanner;
+
+public class StringOperations {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Accepting the string from the user
+        System.out.print("Enter the string: ");
+        String inputString = scanner.nextLine(); // Example input: "Welcome to Saveetha university"
+
+        // Perform operations
+        // i) Replace a word
+        System.out.print("Enter the word to replace: ");
+        String oldWord = scanner.nextLine();
+        System.out.print("Enter the new word: ");
+        String newWord = scanner.nextLine();
+        String replacedString = inputString.replace(oldWord, newWord);
+
+        // ii) Find the length
+        int length = inputString.length();
+
+        // iii) Uppercase Conversion
+        String uppercaseString = inputString.toUpperCase();
+
+        // Display results
+        System.out.println("\nOriginal String: " + inputString);
+        System.out.println("Replaced String: " + replacedString);
+        System.out.println("Length of the String: " + length);
+        System.out.println("Uppercase Conversion: " + uppercaseString);
+
+        scanner.close();
+    }
+}
