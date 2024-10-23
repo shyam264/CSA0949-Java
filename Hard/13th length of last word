@@ -1,0 +1,26 @@
+public class Solution {
+    public int lengthOfLastWord(String s) {
+        // Start from the end of the string and move backward
+        int length = 0;
+        int i = s.length() - 1;
+
+        // Skip trailing spaces if any
+        while (i >= 0 && s.charAt(i) == ' ') {
+            i--;
+        }
+
+        // Count the length of the last word
+        while (i >= 0 && s.charAt(i) != ' ') {
+            length++;
+            i--;
+        }
+
+        return length;
+    }
+
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        String s = "Hello World   "; // Example with trailing spaces
+        System.out.println("Length of last word: " + solution.lengthOfLastWord(s)); // Output: 5
+    }
+}
