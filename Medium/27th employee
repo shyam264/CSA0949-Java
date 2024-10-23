@@ -1,0 +1,67 @@
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+class Employee {
+    private String name;
+    private int id;
+
+    public Employee(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee ID: " + id + ", Name: " + name;
+    }
+}
+
+public class EmployeeRecord {
+    public static void main(String[] args) {
+        // Create a Map to store employee records
+        Map<Integer, Employee> employeeMap = new HashMap<>();
+        Scanner scanner = new Scanner(System.in);
+
+        // i) Add objects
+        employeeMap.put(101, new Employee(101, "Alice Johnson"));
+        employeeMap.put(102, new Employee(102, "Bob Smith"));
+        employeeMap.put(103, new Employee(103, "Charlie Brown"));
+        
+        System.out.println("Employee records added.");
+        
+        // ii) Check if the map is empty
+        System.out.println("Is employee map empty? " + employeeMap.isEmpty());
+
+        // iii) Remove specified object
+        System.out.print("Enter employee ID to remove: ");
+        int removeId = scanner.nextInt();
+        Employee removedEmployee = employeeMap.remove(removeId);
+        
+        if (removedEmployee != null) {
+            System.out.println("Removed: " + removedEmployee);
+        } else {
+            System.out.println("Employee with ID " + removeId + " not found.");
+        }
+
+        // Display current employee records
+        System.out.println("Current Employee Records: " + employeeMap);
+
+        // iv) Clear the map
+        employeeMap.clear();
+        System.out.println("Employee records cleared.");
+        
+        // Check if the map is empty after clearing
+        System.out.println("Is employee map empty? " + employeeMap.isEmpty());
+
+        scanner.close();
+    }
+}
