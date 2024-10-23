@@ -1,0 +1,38 @@
+import java.util.HashMap;
+
+public class Solution {
+    public boolean canConstruct(String ransomNote, String magazine) {
+        // Create a HashMap to store the frequency of each character in the magazine
+        HashMap<Character, Integer> magazineMap = new HashMap<>();
+        
+        // Count each character's occurrences in the magazine
+        for (char c : magazine.toCharArray()) {
+            magazineMap.put(c, magazineMap.getOrDefault(c, 0) + 1);
+        }
+        
+        // Check if each character in the ransomNote can be found in the magazine
+        for (char c : ransomNote.toCharArray()) {
+            // If the character is not in the magazine or its count is less than needed
+            if (!magazineMap.containsKey(c) || magazineMap.get(c) == 0) {
+                return false;
+            }
+            // Decrement the count of the character in the magazine
+            magazineMap.put(c, magazineMap.get(c) - 1);
+        }
+        
+        return true; // If all characters in ransomNote can be constructed from the magazine
+    }
+
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        
+        // Test cases
+        String ransomNote1 = "a";
+        String magazine1 = "b";
+        System.out.println("Can construct ransom note 1: " + solution.canConstruct(ransomNote1, magazine1)); // Output: false
+
+        String ransomNote2 = "aa";
+        String magazine2 = "aab";
+        System.out.println("Can construct ransom note 2: " + solution.canConstruct(ransomNote2, magazine2)); // Output: true
+    }
+}
