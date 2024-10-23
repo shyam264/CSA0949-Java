@@ -1,0 +1,33 @@
+public class Solution {
+    public int numberOfSteps(int num) {
+        int steps = 0;  // Initialize a variable to count the number of steps
+        
+        // Continue until num becomes zero
+        while (num > 0) {
+            if (num % 2 == 0) {
+                num /= 2;  // If the number is even, divide it by 2
+            } else {
+                num -= 1;  // If the number is odd, subtract 1
+            }
+            steps++;  // Increment the step counter
+        }
+        
+        return steps;
+    }
+
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        
+        // Test case 1
+        int num1 = 14;
+        System.out.println("Number of steps to reduce " + num1 + " to zero: " + solution.numberOfSteps(num1)); // Output: 6
+
+        // Test case 2
+        int num2 = 8;
+        System.out.println("Number of steps to reduce " + num2 + " to zero: " + solution.numberOfSteps(num2)); // Output: 4
+
+        // Test case 3
+        int num3 = 123;
+        System.out.println("Number of steps to reduce " + num3 + " to zero: " + solution.numberOfSteps(num3)); // Output: 12
+    }
+}
