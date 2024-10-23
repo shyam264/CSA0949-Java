@@ -1,0 +1,64 @@
+import java.util.*;
+
+public class Solution {
+    public int[] kWeakestRows(int[][] mat, int k) {
+        int m = mat.length;
+        int n = mat[0].length;
+        
+        // Create an array to store the number of soldiers and the row index
+        int[][] soldiersAndIndex = new int[m][2];
+        
+        for (int i = 0; i < m; i++) {
+            int soldiersCount = 0;
+            
+            // Count the number of 1's (soldiers) in the row
+            for (int j = 0; j < n; j++) {
+                if (mat[i][j] == 1) {
+                    soldiersCount++;
+                } else {
+                    break; // As soon as we hit a civilian (0), we can stop counting
+                }
+            }
+            
+            // Store the soldiers count and the row index
+            soldiersAndIndex[i][0] = soldiersCount;
+            soldiersAndIndex[i][1] = i;
+        }
+        
+        // Sort the rows: first by number of soldiers, then by index in case of ties
+        Arrays.sort(soldiersAndIndex, (a, b) -> {
+            if (a[0] == b[0]) {
+                return Integer.compare(a[1], b[1]);
+            } else {
+                return Integer.compare(a[0], b[0]);
+            }
+        });
+        
+        // Extract the indices of the k weakest rows
+        int[] result = new int[k];
+        for (int i = 0; i < k; i++) {
+            result[i] = soldiersAndIndex[i][1];
+        }
+        
+        return result;
+    }
+
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        
+        // Test case
+        int[][] mat = {
+            {1, 1, 0, 0, 0},
+            {1, 1, 1, 1, 0},
+            {1, 0, 0, 0, 0},
+            {1, 1, 0, 0, 0},
+            {1, 1, 1, 1, 1}
+        };
+        int k = 3;
+        
+        int[] result = solution.kWeakestRows(mat, k);
+        
+        // Print the result
+        System.out.println(Arrays.toString(result)); // Output: [2, 0, 3]
+    }
+}
