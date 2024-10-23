@@ -1,0 +1,34 @@
+import java.util.Hashtable;
+import java.util.Enumeration;
+
+public class BankDetails {
+
+    public static void main(String[] args) {
+        // Create a HashTable to store bank details
+        Hashtable<String, String> bankDetails = new Hashtable<>();
+
+        // i) Add 3 records
+        bankDetails.put("12345", "Alice Johnson");
+        bankDetails.put("67890", "Bob Smith");
+        bankDetails.put("11223", "Charlie Brown");
+
+        // Displaying the records
+        System.out.println("Bank Details Records:");
+        Enumeration<String> keys = bankDetails.keys();
+        while (keys.hasMoreElements()) {
+            String accountNumber = keys.nextElement();
+            String customerName = bankDetails.get(accountNumber);
+            System.out.println("Account Number: " + accountNumber + ", Customer Name: " + customerName);
+        }
+
+        // ii) Display the size of HashTable
+        System.out.println("\nSize of HashTable: " + bankDetails.size());
+
+        // iii) Clear the HashTable
+        bankDetails.clear();
+        System.out.println("HashTable cleared.");
+
+        // Display the size after clearing
+        System.out.println("Size of HashTable after clearing: " + bankDetails.size());
+    }
+}
