@@ -1,0 +1,70 @@
+import java.util.Scanner;
+
+// Class to represent the Electricity Consumer
+class ElectricityBill {
+    private String consumerNo;
+    private String consumerName;
+    private double previousReading;
+    private double currentReading;
+
+    // Constructor
+    public ElectricityBill(String consumerNo, String consumerName, double previousReading, double currentReading) {
+        this.consumerNo = consumerNo;
+        this.consumerName = consumerName;
+        this.previousReading = previousReading;
+        this.currentReading = currentReading;
+    }
+
+    // Method to calculate the bill amount
+    public double calculateBill() {
+        double unitsConsumed = currentReading - previousReading; // Calculate the units consumed
+        double billAmount = 0.0;
+
+        // Calculate the bill based on the tariff
+        if (unitsConsumed <= 100) {
+            billAmount = unitsConsumed * 1.0;
+        } else if (unitsConsumed <= 200) {
+            billAmount = (100 * 1.0) + ((unitsConsumed - 100) * 2.5);
+        } else if (unitsConsumed <= 500) {
+            billAmount = (100 * 1.0) + (100 * 2.5) + ((unitsConsumed - 200) * 4.0);
+        } else {
+            billAmount = (100 * 1.0) + (100 * 2.5) + (300 * 4.0) + ((unitsConsumed - 500) * 6.0);
+        }
+
+        return billAmount; // Return the calculated bill amount
+    }
+
+    // Method to display the bill details
+    public void displayBill() {
+        double billAmount = calculateBill(); // Calculate the bill amount
+        System.out.println("Electricity Bill Details:");
+        System.out.println("Consumer No: " + consumerNo);
+        System.out.println("Consumer Name: " + consumerName);
+        System.out.printf("Previous Month Reading: %.2f units\n", previousReading);
+        System.out.printf("Current Month Reading: %.2f units\n", currentReading);
+        System.out.printf("Units Consumed: %.2f units\n", currentReading - previousReading);
+        System.out.printf("Total Bill Amount: Rs. %.2f\n", billAmount);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Input consumer details
+        System.out.print("Enter Consumer Number: ");
+        String consumerNo = sc.nextLine();
+        System.out.print("Enter Consumer Name: ");
+        String consumerName = sc.nextLine();
+        System.out.print("Enter Previous Month Reading (in units): ");
+        double previousReading = sc.nextDouble();
+        System.out.print("Enter Current Month Reading (in units): ");
+        double currentReading = sc.nextDouble();
+
+        // Create an object of ElectricityBill class
+        ElectricityBill bill = new ElectricityBill(consumerNo, consumerName, previousReading, currentReading);
+
+        // Display the bill details
+        bill.displayBill();
+    }
+}
